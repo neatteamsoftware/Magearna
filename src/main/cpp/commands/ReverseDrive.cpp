@@ -5,40 +5,35 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/RotatePID.h"
+#include "commands/ReverseDrive.h"
 
-RotatePID::RotatePID(int angle) {
+ReverseDrive::ReverseDrive() {
   // Use Requires() here to declare subsystem dependencies
   // eg. Requires(Robot::chassis.get());
-  Requires(&Robot::m_chassis);
-  this->angle = angle;
-  SetTimeout(2);
 }
 
 // Called just before this Command runs the first time
-void RotatePID::Initialize() {
-  Robot::m_chassis.ResetGyro();
-  Robot::m_chassis.SetSetpoint(this->angle);
-  Robot::m_chassis.Enable();
+void ReverseDrive::Initialize() {
+  Robot::m_chassis.ReverseDrive();
 }
 
 // Called repeatedly when this Command is scheduled to run
-void RotatePID::Execute() {
-  
+void ReverseDrive::Execute() {
+
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool RotatePID::IsFinished() {
-  return Robot::m_chassis.OnTarget() || IsTimedOut();
+bool ReverseDrive::IsFinished() { 
+  return true;
 }
 
 // Called once after isFinished returns true
-void RotatePID::End() {
-  Robot::m_chassis.Disable();
+void ReverseDrive::End() {
+
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void RotatePID::Interrupted() {
+void ReverseDrive::Interrupted() {
   this->End();
 }

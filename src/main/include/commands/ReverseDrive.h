@@ -6,23 +6,16 @@
 /*----------------------------------------------------------------------------*/
 
 #pragma once
-#include "Robot.h"
-using namespace frc;
-#include <frc/WPILib.h>
-#include "RobotMap.h"
-#include "commands/ChangeDoors.h"
-#include "commands/Climb.h"
-#include "commands/RotatePID.h"
-#include "commands/ReverseDrive.h"
-#include "triggers/POV.h"
 
-class OI {
- private:
-  Joystick* stick;
-  JoystickButton* buttons[10];
-  POV* pov;
+#include <frc/commands/Command.h>
+#include "../Robot.h"
 
+class ReverseDrive : public frc::Command {
  public:
-  OI();
-  Joystick* GetStick();
+  ReverseDrive();
+  void Initialize() override;
+  void Execute() override;
+  bool IsFinished() override;
+  void End() override;
+  void Interrupted() override;
 };

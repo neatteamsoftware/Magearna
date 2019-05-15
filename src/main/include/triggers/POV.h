@@ -14,7 +14,9 @@ using namespace frc;
 class POV : public frc::Trigger {
  private:
   Joystick* stick;
+  int angle;
  public:
   POV(Joystick* stick);
   bool Get() override;
+  int GetAngle();
 };

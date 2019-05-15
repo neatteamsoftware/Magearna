@@ -9,8 +9,18 @@
 
 POV::POV(Joystick* stick) {
     this->stick = stick;
+    this->angle = -1;
 }
 
 bool POV::Get() {
-    return this->stick->GetPOV(0) != -1;
+    int cur_angle = this->stick->GetPOV(0);
+    if (cur_angle != -1) {
+        this->angle = cur_angle;
+        return true;
+    }
+    return false;
+}
+
+int POV::GetAngle() {
+    return this->angle;
 }

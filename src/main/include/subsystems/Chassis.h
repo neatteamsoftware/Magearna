@@ -10,6 +10,7 @@
 #include <frc/commands/PIDSubsystem.h>
 using namespace frc;
 #include <frc/WPILib.h>
+#include <math.h>
 #include "../RobotMap.h"
 #include "../commands/DriveByJoystick.h"
 
@@ -25,6 +26,7 @@ class Chassis : public frc::PIDSubsystem {
 	SpeedControllerGroup* right;
 	DifferentialDrive* drive;
 	ADXRS450_Gyro* gyro;
+  bool is_reversed;
  public:
   Chassis();
   double ReturnPIDInput() override;
@@ -33,4 +35,5 @@ class Chassis : public frc::PIDSubsystem {
   void Drive(double mag, double rot, bool squared);
 	void Drive(Joystick* stick);
   void ResetGyro();
+  void ReverseDrive();
 };

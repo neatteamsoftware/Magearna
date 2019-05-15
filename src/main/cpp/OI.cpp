@@ -17,7 +17,8 @@ OI::OI() {
   this->pov = new POV(this->stick);
   this->buttons[BUTTON_A]->WhenPressed(new ChangeDoors());
   this->buttons[BUTTON_B]->WhileHeld(new Climb());
-  this->pov->WhenActive(new RotatePID(this->stick->GetPOV(0)));
+  this->buttons[BUTTON_START]->WhenPressed(new ReverseDrive());
+  this->pov->WhenActive(new RotatePID(this->pov->GetAngle()));
 }
 
 Joystick* OI::GetStick() {
